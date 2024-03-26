@@ -1,0 +1,33 @@
+server:
+  #8080:测试  #8082:测试
+  port: 8084
+
+spring: #springboot的配置
+  application:
+    name: twh  #appName
+  datasource: #定义数据源
+    #下面这两个配置，可以在每次连接的时候判断一些连接是否有效
+    druid.test-on-borrow: true
+    druid.test-while-idle: true
+    db-type: MYSQL
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/twh?useSSL=false&autoReconnect=true&serverTimezone=GMT%2B8&characterEncoding=utf8&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+  resources:
+    static-locations: classpath:/templates  #访问静态页面
+
+mybatis:  #mybatyis的配置
+  mapper-locations: classpath:mapper/*Mapper.xml #指定mapper的配置文件的路径是mapper文件夹下的所有 xml文件。
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  #日志级别
+logging:
+  level:
+    root: warn
+    #trace时 四个级别都打印出来，info时打印info和warn,warn时只打印warn,debug时打印debug,warn,info
+    com.twh.door*: debug
+
+
+

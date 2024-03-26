@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--上面2行的是约束依赖，固定照抄就好-->
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+<mapper namespace="com.twh.door.mapper.DoorUserMapper">
+    <!--定义一个名为BaseResultMap的返回类型-->
+    <resultMap id="BaseResultMap" type="com.twh.door.entity.POJO.DoorUser">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="userName" property="userName" jdbcType="VARCHAR"></result>
+        <result column="fullName" property="fullName" jdbcType="VARCHAR"></result>
+        <result column="passWord" property="passWord" jdbcType="VARCHAR"></result>
+        <result column="Status" property="Status" jdbcType="VARCHAR"></result>
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"></result>
+        <result column="createTime" property="remark" jdbcType="VARCHAR"></result>
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"></result>
+        <result column="age" property="age" jdbcType="INTEGER"></result>
+        <result column="bornDate" property="bornDate" jdbcType="VARCHAR"></result>
+        <result column="resource" property="resource" jdbcType="VARCHAR"></result>
+    </resultMap>
+    <!--插入语句-->
+    <!--id要与UserMapper文件中表示插入的函数名一致，parameterType表示函数的输入参数的类型-->
+    <insert id="regist" parameterType="com.twh.door.entity.POJO.DoorUser">
+        insert into DOOR_USER (userName,passWord) values(#{userName},#{passWord})
+    </insert>
+
+    <!--删除语句-->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from user where id =#{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--查找语句-->
+    <!--resultMap表示函数返回的类型-->
+    <select id="findUserByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT U.USERNAME,U.PASSWORD FROM DOOR_USER U WHERE U.USERNAME=#{userName}
+    </select>
+
+    <!--查找语句-->
+    <select id="login" resultType="java.lang.Long">
+        SELECT U.ID FROM DOOR_USER U WHERE U.USERNAME = #{userName} AND PASSWORD = #{passWord} AND U.STATUS='0'
+    </select>
+
+    <!--修改语句-->
+    <update id="updateUser" parameterType="com.twh.door.entity.POJO.DoorUser">
+        update user set name=#{name,jdbcType=VARCHAR},age=#{age,jdbcType=INTEGER} where id=#{id,jdbcType=INTEGER}
+    </update>
+</mapper>
