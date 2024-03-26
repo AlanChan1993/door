@@ -3,10 +3,10 @@ package com.twh.door.controller;
 
 import com.twh.door.converter.UserFromToUserDTO;
 import com.twh.door.entity.DTO.DoorUserDTO;
-import com.twh.door.entity.EMUNS.ResultEnums;
+import com.twh.door.enums.ResultEnums;
 import com.twh.door.entity.FORM.DoorUserForm;
 import com.twh.door.entity.VO.Result;
-import com.twh.door.entity.exception.doorException;
+import com.twh.door.exception.DoorException;
 import com.twh.door.services.DoorUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class UserController {
     public Result regist(@Valid DoorUserForm userFrom, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.error("【用户注册】 用户和密码不能空,user={}", userFrom);
-            throw new doorException(ResultEnums.NOT_NULL.getCode(), bindingResult.getFieldError().getDefaultMessage());
+            throw new DoorException(ResultEnums.NOT_NULL.getCode(), bindingResult.getFieldError().getDefaultMessage());
         }
         DoorUserDTO userDTO = UserFromToUserDTO.convert(userFrom);
         return userService.regist(userDTO);
@@ -51,7 +51,7 @@ public class UserController {
     public Result login(@Valid DoorUserForm userFrom, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.error("【用户登录】 用户和密码不能空,user={}", userFrom);
-            throw new doorException(ResultEnums.NOT_NULL.getCode(), bindingResult.getFieldError().getDefaultMessage());
+            throw new DoorException(ResultEnums.NOT_NULL.getCode(), bindingResult.getFieldError().getDefaultMessage());
         }
         DoorUserDTO userDTO = UserFromToUserDTO.convert(userFrom);
         return userService.login(userDTO);

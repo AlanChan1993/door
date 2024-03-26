@@ -1,4 +1,4 @@
-package com.twh.door.entity.EMUNS;
+package com.twh.door.enums;
 
 import lombok.Getter;
 
