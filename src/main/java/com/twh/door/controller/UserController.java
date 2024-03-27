@@ -53,6 +53,9 @@ public class UserController {
             log.error("【用户登录】 用户和密码不能空,user={}", userFrom);
             throw new DoorException(ResultEnums.NOT_NULL.getCode(), bindingResult.getFieldError().getDefaultMessage());
         }
+        if (null == userFrom.getUsername()) {
+
+        }
         DoorUserDTO userDTO = UserFromToUserDTO.convert(userFrom);
         return userService.login(userDTO);
     }
