@@ -41,5 +41,15 @@ public interface DoorUserMapper {
      * @return
      */
     Long login(DoorUserDTO user);
+
+
+    /**
+     * 获取用户
+     *
+     * @param user
+     * @return
+     */
+    DoorUser getUser(String userName,String passWord);
+
 }
 
