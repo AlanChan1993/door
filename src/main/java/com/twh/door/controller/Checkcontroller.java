@@ -50,13 +50,14 @@ public class Checkcontroller {
             log.info("生成的token=:{}", token);
 
             // 将 token 存储到 redis 中
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
-            operations.set(token, token, 1, TimeUnit.HOURS);
+            //ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            //operations.set(token, token, 1, TimeUnit.HOURS);
 
             response.setHeader("token", token);
+            response.addHeader("Authorization", "Twh_ " + token);
             return "redirect:/door/home/bingo.html";
         }else{
-            return "redirect:/Check/login";
+            return "redirect:/door/error.html";
             //账号或密码错误，登录失败，重定向到登录页面
         }
     }

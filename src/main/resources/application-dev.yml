@@ -16,6 +16,10 @@ spring: #springboot的配置
     password: 123456
   resources:
     static-locations: classpath:/templates  #访问静态页面
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
   date:
     redis:
       host: localhost
@@ -32,6 +36,9 @@ logging:
     root: warn
     #trace时 四个级别都打印出来，info时打印info和warn,warn时只打印warn,debug时打印debug,warn,info
     com.twh.door*: debug
+  #日志输出文件
+  file:
+    name: log/log_202403/lab.log
 
 
 

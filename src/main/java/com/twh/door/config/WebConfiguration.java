@@ -19,6 +19,10 @@ public class WebConfiguration implements WebMvcConfigurer {
         List<String> excludePath=new ArrayList<>();
         excludePath.add("/Check/*");
         excludePath.add("/user/*");
+        excludePath.add("/**/*.html");
+        excludePath.add("/**/*.js");
+        excludePath.add("/**/*.css");
+
 
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
