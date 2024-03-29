@@ -7,6 +7,7 @@ import com.twh.door.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpStatus;
@@ -18,12 +19,18 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
 @Slf4j
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
     DoorUserService userService;
-    private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    //private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -61,6 +68,20 @@ public class LoginInterceptor implements HandlerInterceptor {
                     throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"请先登录姐妹");
                 }
             }
+
+            //redis中取得token并做判断
+            ValueOperations<String,Object> vo = redisTemplate.opsForValue();
+            Object loginStatus = vo.get(token);
+            if( Objects.isNull(loginStatus)){
+                JSONObject jsonResult  = new JSONObject();
+                jsonResult.put("returnCode",500);
+                jsonResult.put("returnMsg","token已经过期，请重新登录");
+                response.getWriter().print(result);
+                return false;
+            }
+            //重新赋值
+            redisTemplate.expire(token,5, TimeUnit.MINUTES);
+
             return true;
         }
         try {

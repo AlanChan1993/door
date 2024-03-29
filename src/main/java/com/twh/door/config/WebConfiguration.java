@@ -18,6 +18,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> excludePath=new ArrayList<>();
         excludePath.add("/Check/*");
+        excludePath.add("/check/*");
         excludePath.add("/user/*");
         excludePath.add("/**/*.html");
         excludePath.add("/**/*.js");

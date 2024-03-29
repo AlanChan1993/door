@@ -1,19 +1,17 @@
 package com.twh.door.controller;
 
-import com.twh.door.entity.DTO.DoorUserDTO;
 import com.twh.door.entity.FORM.DoorUserForm;
 import com.twh.door.entity.POJO.DoorUser;
 import com.twh.door.entity.VO.Result;
 import com.twh.door.services.DoorUserServiceImpl;
 import com.twh.door.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +28,8 @@ public class Checkcontroller {
     @Autowired
     private DoorUserServiceImpl userservice;
 
-    private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     //之前用的check，可能check为关键字
     @RequestMapping("/login")
@@ -52,6 +51,8 @@ public class Checkcontroller {
             // 将 token 存储到 redis 中
             //ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
             //operations.set(token, token, 1, TimeUnit.HOURS);
+            ValueOperations<String, String> vo = redisTemplate.opsForValue();
+            vo.set(token, userFrom.getUsername(), 5, TimeUnit.MINUTES);
 
             response.setHeader("token", token);
             response.addHeader("Authorization", "Twh_ " + token);
@@ -110,7 +111,7 @@ public class Checkcontroller {
         }
         // service
         //userService.updatePwd(newPwd);
-        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
         operations.getOperations().delete(token);
         return new Result();//Result.success();
     }
