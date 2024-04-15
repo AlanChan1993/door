@@ -11,24 +11,24 @@ import java.util.List;
 
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
-    @Autowired
-    LoginInterceptor loginInterceptor;
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        List<String> excludePath=new ArrayList<>();
-        excludePath.add("/Check/*");
-        excludePath.add("/check/*");
-        excludePath.add("/user/*");
-        excludePath.add("/**/*.html");
-        excludePath.add("/**/*.js");
-        excludePath.add("/**/*.css");
-
-
-        registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns(excludePath);
-        WebMvcConfigurer.super.addInterceptors(registry);
-    }
+//    @Autowired
+//    LoginInterceptor loginInterceptor;
+//
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        List<String> excludePath=new ArrayList<>();
+//        excludePath.add("/Check/*");
+//        excludePath.add("/check/*");
+//        excludePath.add("/user/*");
+//        excludePath.add("/door/*");
+//        excludePath.add("/**/*.html");
+//        excludePath.add("/**/*.js");
+//        excludePath.add("/**/*.css");
+//
+//        registry.addInterceptor(loginInterceptor)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns(excludePath);
+//        WebMvcConfigurer.super.addInterceptors(registry);
+//    }
 }
 

@@ -3,22 +3,18 @@ package com.twh.door.controller;
 
 import com.twh.door.converter.UserFromToUserDTO;
 import com.twh.door.entity.DTO.DoorUserDTO;
-import com.twh.door.entity.POJO.DoorUser;
 import com.twh.door.enums.ResultEnums;
 import com.twh.door.entity.FORM.DoorUserForm;
 import com.twh.door.entity.VO.Result;
 import com.twh.door.exception.DoorException;
-import com.twh.door.services.DoorUserServiceImpl;
-import com.twh.door.utils.TokenUtils;
+import com.twh.door.services.impl.DoorUserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Slf4j

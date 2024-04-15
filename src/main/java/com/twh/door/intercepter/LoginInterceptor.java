@@ -23,7 +23,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@Component
+//@Component
 public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
     DoorUserService userService;
@@ -81,7 +81,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
             //重新赋值
             redisTemplate.expire(token,5, TimeUnit.MINUTES);
-
             return true;
         }
         try {
