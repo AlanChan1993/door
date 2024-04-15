@@ -20,8 +20,6 @@ public class TokenUtils {
         try {
             Date expireAt=new Date(System.currentTimeMillis()+EXPIRE_TIME);
 
-            Date now=new Date();
-
             token= JWT.create()
                     .withIssuer("auth0")
                     .withClaim("account",userBean.getId())
