@@ -48,8 +48,6 @@ public class Checkcontroller {
             log.info("生成的token=:{}", token);
 
             // 将 token 存储到 redis 中
-            //ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
-            //operations.set(token, token, 1, TimeUnit.HOURS);
             ValueOperations<String, String> vo = redisTemplate.opsForValue();
             vo.set(token, userFrom.getUsername(), 5, TimeUnit.MINUTES);
 
