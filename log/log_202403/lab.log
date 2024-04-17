@@ -1,6 +1,0 @@
-2024-03-28 16:05:31.986  INFO 20812 --- [restartedMain] com.twh.door.DoorApplication             : Starting DoorApplication using Java 1.8.0_191 on WINDOWS-21RVF55 with PID 20812 (D:\work\workspace3\twh\target\classes started by EDZ in D:\work\workspace3\twh)
-2024-03-28 16:05:31.988 DEBUG 20812 --- [restartedMain] com.twh.door.DoorApplication             : Running with Spring Boot v2.5.4, Spring v5.3.9
-2024-03-28 16:05:31.988  INFO 20812 --- [restartedMain] com.twh.door.DoorApplication             : The following profiles are active: dev
-2024-03-28 16:05:34.344  WARN 20812 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-03-28 16:05:34.961  INFO 20812 --- [restartedMain] com.twh.door.DoorApplication             : Started DoorApplication in 3.526 seconds (JVM running for 4.514)
-2024-03-28 16:05:57.037  INFO 20812 --- [http-nio-8084-exec-1] com.twh.door.controller.Checkcontroller  : 生成的token=:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6IjIyMiIsImNvZGUiOiIyMDA1MDMwMSIsImlzcyI6ImF1dGgwIiwiZXhwIjoxNzE0MjA1MTU2LCJhY2NvdW50Ijo2fQ.V4rz940mr18oS2hQhw-OoVNQoUDBP8UTWxdmYjmxj_Q
