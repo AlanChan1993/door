@@ -2,7 +2,7 @@ package com.twh.door.controller;
 
 import com.twh.door.entity.FORM.DoorUserForm;
 import com.twh.door.entity.POJO.DoorUser;
-import com.twh.door.entity.VO.Result;
+import com.twh.door.entity.VO.ResultVO;
 import com.twh.door.services.impl.DoorUserServiceImpl;
 import com.twh.door.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -88,7 +88,7 @@ public class Checkcontroller {
 
     //todo
     @PatchMapping("/updatePwd")
-    public Result updatePwd(@RequestBody Map<String, String> params, @RequestHeader("Authorization") String token) {
+    public ResultVO updatePwd(@RequestBody Map<String, String> params, @RequestHeader("Authorization") String token) {
         // 校验参数
         String oldPwd = params.get("old_pwd");
         String newPwd = params.get("new_pwd");
@@ -110,7 +110,7 @@ public class Checkcontroller {
         //userService.updatePwd(newPwd);
         ValueOperations<String, String> operations = redisTemplate.opsForValue();
         operations.getOperations().delete(token);
-        return new Result();//Result.success();
+        return new ResultVO();//Result.success();
     }
 
 }

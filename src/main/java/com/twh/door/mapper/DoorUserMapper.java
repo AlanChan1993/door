@@ -6,6 +6,8 @@ import com.twh.door.entity.POJO.DoorUser;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * mapper的具体表达式
  */
@@ -50,6 +52,15 @@ public interface DoorUserMapper {
      * @return
      */
     DoorUser getUser(String userName,String passWord);
+
+
+    /**
+     * 通過status获取用户列表
+     *
+     * @param user
+     * @return
+     */
+    List<DoorUser> getUserList(String status);
 
 }
 

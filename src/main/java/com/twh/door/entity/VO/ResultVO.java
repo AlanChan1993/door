@@ -8,7 +8,7 @@ import lombok.Data;
  * @param <T> 可变类型
  */
 @Data
-public class Result<T> {
+public class ResultVO<T> {
     //返回信息
     private String msg;
     //数据是否正常请求

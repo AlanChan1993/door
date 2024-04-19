@@ -9,11 +9,11 @@
     <resultMap id="BaseResultMap" type="com.twh.door.entity.POJO.DoorUser">
         <id column="id" property="id" jdbcType="INTEGER"></id>
         <result column="userName" property="userName" jdbcType="VARCHAR"></result>
-        <result column="fullName" property="fullName" jdbcType="VARCHAR"></result>
-        <result column="passWord" property="passWord" jdbcType="VARCHAR"></result>
-        <result column="Status" property="Status" jdbcType="VARCHAR"></result>
+        <result column="fullname" property="fullName" jdbcType="VARCHAR"></result>
+        <result column="password" property="passWord" jdbcType="VARCHAR"></result>
+        <result column="status" property="Status" jdbcType="VARCHAR"></result>
         <result column="createTime" property="createTime" jdbcType="TIMESTAMP"></result>
-        <result column="createTime" property="remark" jdbcType="VARCHAR"></result>
+        <result column="remark" property="remark" jdbcType="VARCHAR"></result>
         <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"></result>
         <result column="age" property="age" jdbcType="INTEGER"></result>
         <result column="bornDate" property="bornDate" jdbcType="VARCHAR"></result>
@@ -22,7 +22,8 @@
     <!--插入语句-->
     <!--id要与UserMapper文件中表示插入的函数名一致，parameterType表示函数的输入参数的类型-->
     <insert id="regist" parameterType="com.twh.door.entity.POJO.DoorUser">
-        insert into DOOR_USER (userName,passWord) values(#{userName},#{passWord})
+        INSERT INTO DOOR_USER (USERNAME,PASSWORD,FULLNAME,REMARK,AGE,BORNDATE)
+        VALUES(#{userName},#{passWord},#{fullName},#{remark},#{age},#{bornDate})
     </insert>
 
     <!--删除语句-->
@@ -50,4 +51,9 @@
     <update id="updateUser" parameterType="com.twh.door.entity.POJO.DoorUser">
         update user set name=#{name,jdbcType=VARCHAR},age=#{age,jdbcType=INTEGER} where id=#{id,jdbcType=INTEGER}
     </update>
+
+    <!--查找语句-->
+    <select id="getUserList" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT * FROM DOOR_USER U WHERE U.STATUS=#{status,jdbcType=VARCHAR}
+    </select>
 </mapper>
