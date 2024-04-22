@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
-@RestController    //相当于@Controller+@RequestBody
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -65,7 +65,7 @@ public class UserController {
      *
      * @param user 参数封装
      * @return Result
-     *//*
+     */
     /*
     @PostMapping(value = "/login")
     public Result login(@Valid DoorUserForm userFrom, BindingResult bindingResult) {
