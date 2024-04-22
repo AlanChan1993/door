@@ -12,7 +12,7 @@ public class UserToUserVO {
         DoorUserVO vo = new DoorUserVO();
         vo.setUserName(user.getUserName());
         vo.setRemark(user.getRemark());
-        //vo.setPassWord();
+        vo.setPassWord(user.getPassWord());
         vo.setId(user.getId());
         vo.setFullName(user.getFullName());
         vo.setBornDate(user.getBornDate());
@@ -23,7 +23,6 @@ public class UserToUserVO {
     public List<DoorUserVO> convertListNew(List<DoorUser> userList) {
         return userList.stream().map(e -> convert(e)).collect(Collectors.toList());
     }
-
 
     public List<DoorUserVO> convertList(List<DoorUser> userList) {
         List<DoorUserVO> voList = new ArrayList<>();
