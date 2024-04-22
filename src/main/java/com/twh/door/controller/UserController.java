@@ -2,10 +2,10 @@ package com.twh.door.controller;
 
 
 import com.twh.door.converter.UserFromToUserDTO;
+import com.twh.door.converter.UserToUserVO;
 import com.twh.door.entity.DTO.DoorUserDTO;
 import com.twh.door.entity.POJO.DoorUser;
 import com.twh.door.entity.VO.DoorUserVO;
-import com.twh.door.entity.converter.DoorUserToDoorUserVO;
 import com.twh.door.enums.ResultEnums;
 import com.twh.door.entity.FORM.DoorUserForm;
 import com.twh.door.entity.VO.ResultVO;
@@ -33,7 +33,7 @@ public class UserController {
         DoorUser user = userService.getUserByUserName(userName);
         DoorUserVO doorUserVO = new DoorUserVO();
         if (null != user) {
-            doorUserVO = new DoorUserToDoorUserVO().convert(user);
+            doorUserVO = new UserToUserVO().convert(user);
         }
         return doorUserVO;
     }
