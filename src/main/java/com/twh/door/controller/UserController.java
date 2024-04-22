@@ -47,7 +47,7 @@ public class UserController {
     /**
      * 注册
      *
-     * @param user 参数封装
+     * @param : user 参数封装
      * @return Result
      */
     @PostMapping(value = "/regist")
