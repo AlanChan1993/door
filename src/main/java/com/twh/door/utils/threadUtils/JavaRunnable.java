@@ -1,4 +1,4 @@
-package com.twh.door.utils;
+package com.twh.door.utils.threadUtils;
 
 public class JavaRunnable implements Runnable{
     @Override
