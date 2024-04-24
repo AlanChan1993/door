@@ -1,6 +1,7 @@
 package com.twh.door.study.threadStudy;
 
-import com.twh.door.utils.threadUtils.JavaRunnable;
+
+import com.twh.door.study.threadStudy.threadUtils.JavaRunnable;
 
 public class UseRunnable {
     public static void main(String[] args) {

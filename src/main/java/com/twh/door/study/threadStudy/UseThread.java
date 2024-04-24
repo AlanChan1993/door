@@ -1,6 +1,6 @@
 package com.twh.door.study.threadStudy;
 
-import com.twh.door.utils.threadUtils.JavaThread;
+import com.twh.door.study.threadStudy.threadUtils.JavaThread;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -1,6 +1,6 @@
 package com.twh.door.study.threadStudy;
 
-import com.twh.door.utils.threadUtils.JavaCallable;
+import com.twh.door.study.threadStudy.threadUtils.JavaCallable;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;

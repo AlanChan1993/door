@@ -1,4 +1,4 @@
-package com.twh.door.utils.threadUtils;
+package com.twh.door.study.threadStudy.threadUtils;
 
 import com.twh.door.utils.DateUtil;
 import lombok.extern.slf4j.Slf4j;
