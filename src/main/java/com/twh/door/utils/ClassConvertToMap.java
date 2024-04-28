@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class ClassConvertToMap {
 
-
     public Map<String, Object> objectToMap(Object obj) {
         Map<String, Object> map = new HashMap<>();
         Field[] fields = obj.getClass().getDeclaredFields();
