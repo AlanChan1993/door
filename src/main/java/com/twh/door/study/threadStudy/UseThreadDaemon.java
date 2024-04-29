@@ -11,12 +11,12 @@ public class UseThreadDaemon {
             Thread t1 = new Thread("大王"){
                 @Override
                 public void run() {
-                    for (int i = 0; i < 100; i++) {
+                    for (int i = 0; i < 10; i++) {
                         System.out.println("我是大王我怕谁???");
                     }
                 }
             };
-            System.out.println("isDaemon=  "+t1.isDaemon());
+            System.out.println("isDaemon=  " + t1.isDaemon());
             Thread t2 = new Thread("奴隶"){
                 @Override
                 public void run() {

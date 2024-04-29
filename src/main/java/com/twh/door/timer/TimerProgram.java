@@ -14,16 +14,17 @@ public class TimerProgram {
     @Value("${timer.TimerProgram.timerStr}")
     private String timerStr;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     /**
      * 每30s处理一次   1000 * 1 * 30
      *
      */
-    //@Scheduled(cron="0 0 4 * * ?")//凌晨4点执行
+    @Scheduled(cron="0 0 4 * * ?")//凌晨4点执行
     @Scheduled(fixedRate = 1000 * 1 * 30)
     private void doTimer(){
         log.info("【TimerProgram.doTimer】timerStr=:{}", timerStr);
         log.info("【TimerProgram.doTimer】getNowDate=:{}", new DateUtil().getNowDate());
         log.info("【TimerProgram.doTimer】getNowDate2=:{}", new DateUtil().getNowDate2());
     }
+
+
 }
