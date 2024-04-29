@@ -20,7 +20,7 @@ public interface DoorUserMapper {
      * 注解@Param(value) 若value与可变参数相同，注解可省略
      * 注解@Results  列名和字段名相同，注解可省略
      *
-     * @param username
+     * @param : username
      * @return
      */
     @Results
@@ -31,7 +31,7 @@ public interface DoorUserMapper {
     /**
      * 注册  插入一条user记录
      *
-     * @param user
+     * @param : user
      * @return
      */
     void regist(DoorUserDTO user);
@@ -48,7 +48,7 @@ public interface DoorUserMapper {
     /**
      * 获取用户
      *
-     * @param user
+     * @param : user
      * @return
      */
     DoorUser getUser(String userName,String passWord);
@@ -57,10 +57,21 @@ public interface DoorUserMapper {
     /**
      * 通過status获取用户列表
      *
-     * @param user
+     * @param : user
      * @return
      */
     List<DoorUser> getUserList(String status);
+
+    /**
+     * 创建
+     *
+     * @param ：door_user
+     * @return Result
+     */
+    boolean createBySP(String name, String pwd, String fName);
+
+
+
 
 }
 

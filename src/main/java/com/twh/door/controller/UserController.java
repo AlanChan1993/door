@@ -78,5 +78,16 @@ public class UserController {
         return userService.login(userDTO);
     }
 */
+    /**
+     * 创建
+     *
+     * @param ：door_user
+     * @return Result
+     */
+    @RequestMapping("createBySP")
+    public boolean createBySP(){
+        return userService.createBySP("666", "123", "不邪");
+    }
+
 }
 

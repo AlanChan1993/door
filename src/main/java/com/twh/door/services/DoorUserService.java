@@ -18,4 +18,6 @@ public interface DoorUserService {
 
     List<DoorUserVO> getUserList(String status);
 
+    boolean createBySP(String name,String pwd,String fName);
+
 }

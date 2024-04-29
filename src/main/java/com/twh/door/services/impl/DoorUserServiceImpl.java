@@ -76,6 +76,11 @@ public class DoorUserServiceImpl implements DoorUserService {
         return userVOS;
     }
 
+    @Override
+    public boolean createBySP(String name, String pwd, String fName) {
+        return userMapper.createBySP(name, pwd, fName);
+    }
+
     /**
      * 登录
      *

@@ -11,6 +11,7 @@ public class JavaBasic {
         long b = Runtime.getRuntime().totalMemory();//方法总内存的字节数，
         long c = Runtime.getRuntime().maxMemory();//返回最大内存的字节数。
         log.info("a=:{}", a);
+        log.info("【JavaBasic】", b);
     }
 
     public static void main(String[] args) {

@@ -1,0 +1,13 @@
+-- 创建存储过程测试
+
+delimiter $$
+create procedure insertDoorUser(in name varchar(64),in pwd varchar(64),in  fName varchar(64))
+begin
+ insert into door_user (username,fullname,password) values(name,pwd,fName);
+end $$
+delimiter ;
+
+call insertDoorUser('20240429','123456','你好');
+
+
+select * from door_user du ;

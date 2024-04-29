@@ -56,4 +56,13 @@
     <select id="getUserList" parameterType="java.lang.String" resultMap="BaseResultMap">
         SELECT * FROM DOOR_USER U WHERE U.STATUS=#{status,jdbcType=VARCHAR}
     </select>
+
+
+    <insert id="createBySP" statementType="CALLABLE">
+        {call  twh.insertDoorUser(
+           #{name, mode=IN, jdbcType=VARCHAR},
+           #{pwd, mode=IN, jdbcType=VARCHAR},
+           #{fName, mode=IN, jdbcType=VARCHAR}
+        )}
+    </insert>
 </mapper>
