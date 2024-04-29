@@ -2,7 +2,6 @@ package com.twh.door.study.threadStudy;
 
 public class UseThreadDaemon {
         public static void main(String[] args) {
-
             Thread t = Thread.currentThread();
             boolean daemon = t.isDaemon();
             System.out.println(daemon ? "主线是守护线程" : "主线程不是守护线程");
@@ -11,7 +10,7 @@ public class UseThreadDaemon {
             Thread t1 = new Thread("大王"){
                 @Override
                 public void run() {
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < 3; i++) {
                         System.out.println("我是大王我怕谁???");
                     }
                 }
