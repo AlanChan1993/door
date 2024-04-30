@@ -1,18 +1,21 @@
 package com.twh.door.study.threadStudy;
 
+import javax.transaction.Synchronization;
+
 public class SellTicketRunnable implements Runnable {
     // 定义变量模拟要卖的100张票
     private int ticket = 100;
 
     @Override
     public void run() {
-        while (ticket > 0) {
-            // 卖出一张票数-1
-            ticket--;
-            System.out.println(Thread.currentThread().getName() + "---卖出的是第" + (ticket + 1) + "张, 剩余" + ticket + "张");
-        }
+        synchronized(SellTicketRunnable.class){//并发同步线程
+            while (ticket > 0) {
+                // 卖出一张票数-1
+                ticket--;
+                System.out.println(Thread.currentThread().getName() + "---卖出的是第" + (ticket + 1) + "张, 剩余" + ticket + "张");
+            }
+         }
     }
-
 
     // 线程安全问题演示
         public static void main(String[] args) {
