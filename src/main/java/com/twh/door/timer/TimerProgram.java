@@ -16,7 +16,6 @@ public class TimerProgram {
 
     /**
      * 每30s处理一次   1000 * 1 * 30
-     *
      */
     @Scheduled(cron="0 0 4 * * ?")//凌晨4点执行
     @Scheduled(fixedRate = 1000 * 1 * 30)
