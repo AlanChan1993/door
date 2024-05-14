@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--上面2行的是约束依赖，固定照抄就好-->
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+<mapper namespace="com.twh.door.mapper.GenealogyMapper">
+    <!--定义一个名为BaseResultMap的返回类型-->
+    <resultMap id="BaseResultMap" type="com.twh.door.entity.POJO.Genealogy">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="nickName" property="nickName" jdbcType="VARCHAR"></result>
+        <result column="living" property="living" jdbcType="VARCHAR"></result>
+        <result column="motto" property="motto" jdbcType="VARCHAR"></result>
+        <result column="remark" property="remark" jdbcType="VARCHAR"></result>
+        <result column="bornDate" property="bornDate" jdbcType="VARCHAR"></result>
+        <result column="deathDay" property="deathDay" jdbcType="VARCHAR"></result>
+        <result column="parentId" property="parentId" jdbcType="VARCHAR"></result>
+        <result column="sonId" property="sonId" jdbcType="VARCHAR"></result>
+        <result column="partnerId" property="partnerId" jdbcType="VARCHAR"></result>
+        <result column="pwdId" property="pwdId" jdbcType="VARCHAR"></result>
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"></result>
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+
+    <!--修改语句-->
+    <update id="update" parameterType="com.twh.door.entity.POJO.DoorUser">
+        update user set name=#{name,jdbcType=VARCHAR},age=#{age,jdbcType=INTEGER} where id=#{id,jdbcType=INTEGER}
+    </update>
+
+    <!--插入语句-->
+    <!--id要与UserMapper文件中表示插入的函数名一致，parameterType表示函数的输入参数的类型-->
+    <insert id="createGenealogy" parameterType="com.twh.door.entity.POJO.Genealogy">
+        INSERT INTO GENEALOGY (NAME,NICKNAME,LIVING,MOTTO,REMARK,BORNDATE,DEATHDAY,PARENTID,SONID,PARTNERID,PWDID)
+        VALUES(#{name,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{living,jdbcType=VARCHAR},#{motto,jdbcType=VARCHAR},
+        #{remark,jdbcType=VARCHAR},#{bornDate,jdbcType=VARCHAR},#{deathDay,jdbcType=VARCHAR},#{parentId,jdbcType=VARCHAR},
+        #{sonId,jdbcType=VARCHAR},#{partnerId,jdbcType=VARCHAR},#{pwdId,jdbcType=VARCHAR})
+    </insert>
+
+    <!--删除语句-->
+    <delete id="delGenealogyById" parameterType="java.lang.Integer">
+        DELETE FROM GENEALOGY WHERE ID =#{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--查找语句-->
+    <!--resultMap表示函数返回的类型-->
+    <select id="selectGenealogyById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY  WHERE id=#{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectGenealogyByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY  WHERE NAME=#{name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectGenealogyByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY  WHERE PARENTID=#{parentId,jdbcType=INTEGER}
+    </select>
+    <select id="selectGenealogyBySonId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY  WHERE SONID=#{sonId,jdbcType=INTEGER}
+    </select>
+    <select id="selectGenealogyByPartnerId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY  WHERE PARTNERID=#{partnerId,jdbcType=INTEGER}
+    </select>
+
+    <!--查找语句-->
+    <select id="queryGenealogyList"  resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY WHERE CREATETIME>'2024-01-01 00:00:00'
+    </select>
+
+    <select id="queryGenealogyListS"  resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY WHERE CREATETIME>'2024-01-01 00:00:00'
+        <if test="name!=null and name!=''">
+            AND  NAME=#{name,jdbcType=VARCHAR}
+        </if>
+        <if test="living!=null and living!=''">
+            AND  LIVING=#{living,jdbcType=VARCHAR}
+        </if>
+        <if test="bornDate!=null and bornDate!=''">
+            AND  BORNDATE=#{bornDate,jdbcType=VARCHAR}
+        </if>
+        <if test="deathDay!=null and deathDay!=''">
+            AND  DEATHDAY=#{deathDay,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId!=null and parentId!=''">
+            AND  PARENTID=#{parentId,jdbcType=VARCHAR}
+        </if>
+        <if test="sonId!=null and sonId!=''">
+            AND  SONID=#{sonId,jdbcType=VARCHAR}
+        </if>
+        <if test="partnerId!=null and partnerId!=''">
+            AND  PARTNERID=#{partnerId,jdbcType=VARCHAR}
+        </if>
+        <if test="vagueName!=null and vagueName!=''">
+            <!--name就是传入的参数，bind相当于是一个参数，这个参数的值就是value拼接出来的值-->
+            <bind name="vName" value="'%' + vagueName + '%'" />
+            AND  ( NAME LIKE #{vName} OR NICKNAME LIKE #{vName} )
+        </if>
+    </select>
+
+
+
+</mapper>

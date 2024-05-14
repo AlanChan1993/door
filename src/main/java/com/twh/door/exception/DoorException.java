@@ -15,4 +15,7 @@ public class DoorException extends RuntimeException {
         super(message);
         this.code = code;
     }
+
+    public DoorException(String message) {
+    }
 }
