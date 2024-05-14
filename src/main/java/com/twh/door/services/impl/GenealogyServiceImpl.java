@@ -131,6 +131,23 @@ public class GenealogyServiceImpl implements GenealogyService {
     }
 
     @Override
+    public ResultVO selectFamilyById(String pwdId) {
+        ResultVO resultVO = new ResultVO();
+        if (StringUtils.isNotEmpty(pwdId)) {
+            List<Genealogy> list = new ArrayList<>();
+            list = mapper.selectFamilyById(Integer.valueOf(pwdId));
+            resultVO.setMsg(ResultEnums.SELECT_SUCCESS.getMsg());
+            resultVO.setDetail(list);
+            resultVO.setSuccess(true);
+        }else {
+            resultVO.setMsg(ResultEnums.SYS_ERROR.getMsg());
+            resultVO.setDetail(null);
+            resultVO.setSuccess(false);
+        }
+        return resultVO;
+    }
+
+    @Override
     public ResultVO queryGenealogyList() {
         List<Genealogy> list = mapper.queryGenealogyList();
         ResultVO resultVO = new ResultVO();

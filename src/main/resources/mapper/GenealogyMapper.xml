@@ -53,13 +53,21 @@
     </select>
 
     <select id="selectGenealogyByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT * FROM GENEALOGY  WHERE PARENTID=#{parentId,jdbcType=INTEGER}
+        <!--name就是传入的参数，bind相当于是一个参数，这个参数的值就是value拼接出来的值-->
+        <bind name="parentId" value="'%' + parentId + '%'" />
+        SELECT * FROM GENEALOGY  WHERE PARENTID  LIKE #{parentId}
     </select>
     <select id="selectGenealogyBySonId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT * FROM GENEALOGY  WHERE SONID=#{sonId,jdbcType=INTEGER}
+        <bind name="sonId" value="'%' + sonId + '%'" />
+        SELECT * FROM GENEALOGY  WHERE SONID LIKE #{sonId}
     </select>
     <select id="selectGenealogyByPartnerId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT * FROM GENEALOGY  WHERE PARTNERID=#{partnerId,jdbcType=INTEGER}
+        <bind name="partnerId" value="'%' + partnerId + '%'" />
+        SELECT * FROM GENEALOGY  WHERE PARTNERID LIKE #{partnerId}
+    </select>
+    <select id="selectFamilyById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <bind name="pwdId" value="'%' + pwdId + '%'" />
+        SELECT * FROM GENEALOGY  WHERE PWDID LIKE #{pwdId,jdbcType=INTEGER}
     </select>
 
     <!--查找语句-->

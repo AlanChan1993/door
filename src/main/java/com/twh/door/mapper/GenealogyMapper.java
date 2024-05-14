@@ -22,6 +22,8 @@ public interface GenealogyMapper {
 
     List<Genealogy> selectGenealogyByPartnerId(Integer partnerId);
 
+    List<Genealogy> selectFamilyById(Integer pwdId);
+
     List<Genealogy> queryGenealogyList();
 
     List<Genealogy> queryGenealogyListS(QueryGenealogyEntityDTO queryGenealogyEntityDTO);

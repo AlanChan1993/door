@@ -70,6 +70,16 @@ public class GenealogyController {
     }
 
     @ResponseBody
+    @GetMapping("selectFamilyById")
+    public ResultVO selectFamilyById(@RequestParam("pwd") String pwdId){
+        if (StringUtils.isEmpty(pwdId)) {
+            throw new DoorException(ResultEnums.SYS_ERROR.getMsg());
+        }
+        return service.selectFamilyById(pwdId);
+    }
+
+
+    @ResponseBody
     @GetMapping("selectByName")
     public ResultVO selectByName(@RequestParam("gName") String name){
         if (StringUtils.isEmpty(name)) {

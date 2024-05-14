@@ -17,6 +17,8 @@ public interface GenealogyService {
 
     ResultVO selectGenealogyByPartnerId(String partnerId);
 
+    ResultVO selectFamilyById(String id);
+
     ResultVO queryGenealogyList();
 
     ResultVO queryGenealogyListS(QueryGenealogyEntityDTO queryGenealogyEntityDTO);
