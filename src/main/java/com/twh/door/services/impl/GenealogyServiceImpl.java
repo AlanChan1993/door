@@ -168,8 +168,12 @@ public class GenealogyServiceImpl implements GenealogyService {
     }
 
     @Override
-    public boolean delGenealogyById(String id) {
-        return mapper.delGenealogyById(id
-        );
+    public ResultVO delGenealogyById(String id) {
+        ResultVO resultVO = new ResultVO();
+        boolean a = mapper.delGenealogyById(Integer.valueOf(id));
+        resultVO.setMsg(ResultEnums.DEL_SUCCESS.getMsg());
+        resultVO.setSuccess(true);
+
+        return resultVO;
     }
 }

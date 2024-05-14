@@ -45,7 +45,7 @@
     <!--查找语句-->
     <!--resultMap表示函数返回的类型-->
     <select id="selectGenealogyById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT * FROM GENEALOGY  WHERE id=#{id,jdbcType=INTEGER}
+        SELECT * FROM GENEALOGY  WHERE ID=#{id,jdbcType=INTEGER}
     </select>
 
     <select id="selectGenealogyByName" parameterType="java.lang.String" resultMap="BaseResultMap">

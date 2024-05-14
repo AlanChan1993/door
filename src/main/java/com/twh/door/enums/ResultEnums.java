@@ -21,6 +21,8 @@ public enum ResultEnums {
 
     SELECT_SUCCESS(15,"查询成功"),
 
+    DEL_SUCCESS(16,"删除成功"),
+
     ;
 
     private Integer code;

@@ -23,7 +23,7 @@ public interface GenealogyService {
 
     ResultVO queryGenealogyListS(QueryGenealogyEntityDTO queryGenealogyEntityDTO);
 
-    boolean delGenealogyById(String id);
+    ResultVO delGenealogyById(String id);
 
 
 }

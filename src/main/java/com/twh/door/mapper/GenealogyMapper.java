@@ -28,5 +28,5 @@ public interface GenealogyMapper {
 
     List<Genealogy> queryGenealogyListS(QueryGenealogyEntityDTO queryGenealogyEntityDTO);
 
-    boolean delGenealogyById(String id);
+    boolean delGenealogyById(Integer id);
 }

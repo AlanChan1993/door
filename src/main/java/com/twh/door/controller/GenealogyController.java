@@ -104,4 +104,9 @@ public class GenealogyController {
         return service.queryGenealogyListS(queryGenealogyEntityDTO);
     }
 
+    @DeleteMapping("delById")
+    public ResultVO delById(@RequestParam("dId") String dId){
+        return service.delGenealogyById(dId);
+    }
+
 }
