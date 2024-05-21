@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,6 @@ public class GenealogyServiceImpl implements GenealogyService {
         ResultVO resultVO = new ResultVO();
         if (StringUtils.isNotEmpty(id)) {
             Genealogy genealogy = new Genealogy();
-
             genealogy = mapper.selectGenealogyById(Integer.valueOf(id));
             resultVO.setMsg(ResultEnums.SELECT_SUCCESS.getMsg());
             resultVO.setDetail(genealogy);
@@ -66,7 +64,6 @@ public class GenealogyServiceImpl implements GenealogyService {
         ResultVO resultVO = new ResultVO();
         if (StringUtils.isNotEmpty(name)) {
             List<Genealogy> list = new ArrayList<>();
-
             list = mapper.selectGenealogyByName(name);
             resultVO.setMsg(ResultEnums.SELECT_SUCCESS.getMsg());
             resultVO.setDetail(list);
@@ -172,8 +169,7 @@ public class GenealogyServiceImpl implements GenealogyService {
         ResultVO resultVO = new ResultVO();
         boolean a = mapper.delGenealogyById(Integer.valueOf(id));
         resultVO.setMsg(ResultEnums.DEL_SUCCESS.getMsg());
-        resultVO.setSuccess(true);
-
+        resultVO.setSuccess(a);
         return resultVO;
     }
 }

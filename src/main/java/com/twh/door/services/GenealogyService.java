@@ -24,6 +24,5 @@ public interface GenealogyService {
     ResultVO queryGenealogyListS(QueryGenealogyEntityDTO queryGenealogyEntityDTO);
 
     ResultVO delGenealogyById(String id);
-
-
+    
 }

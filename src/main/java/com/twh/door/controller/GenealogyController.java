@@ -2,7 +2,6 @@ package com.twh.door.controller;
 
 import com.twh.door.entity.DTO.GenealogyDTO;
 import com.twh.door.entity.DTO.QueryGenealogyEntityDTO;
-import com.twh.door.entity.POJO.Genealogy;
 import com.twh.door.entity.VO.ResultVO;
 import com.twh.door.enums.ResultEnums;
 import com.twh.door.exception.DoorException;
@@ -13,9 +12,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-
 
 @Slf4j
 @RestController

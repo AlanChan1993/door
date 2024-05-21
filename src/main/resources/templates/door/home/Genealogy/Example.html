@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>调用Java接口</title>
+</head>
+<body>
+<button onclick="callJavaInterface()">调用接口</button>
+<div id="result"></div>
+
+<script>
+    function callJavaInterface() {
+        alert(1);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            alert("this.readyState=" + this.readyState);
+            alert("this.status=" + this.status);
+            if (this.readyState == 4 && this.status == 200) {
+                //var result = JSON.parse(this.responseText);
+                alert("this.responseText="+this.responseText);
+                //document.getElementById("result").innerHTML = result.message;
+                document.getElementById("result").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "/genealogy/selectById?gId=10", true); // 替换为Java接口的URL
+        xmlhttp.send();
+    }
+</script>
+</body>
+</html>
