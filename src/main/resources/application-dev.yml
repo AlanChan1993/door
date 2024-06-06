@@ -51,10 +51,10 @@ logging:
     com.twh.door*: debug
   #日志输出文件
   file:
-    name: log/log_202404/lab-0429.log
+    name: log/log_202405/lab-0523.log
 
 timer:
   TimerProgram:
-    timerStr: 12345678901qaz2wsx3edc8uhb9ijn0okm
+    timerStr: 12345678901qaz2wsx3edc8uhb9ijn0okm-['=]
 
 
