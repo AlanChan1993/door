@@ -91,6 +91,15 @@ public class GenealogyController {
         return service.queryGenealogyList();
     }
 
+    @PostMapping("queryGenealogyListPage")
+    public ResultVO queryGenealogyListPage(@RequestBody @Valid QueryGenealogyEntityDTO queryGenealogyEntityDTO,
+                                           BindingResult bindingResult){
+        if (ObjectUtils.isEmpty(queryGenealogyEntityDTO)) {
+            throw new DoorException(ResultEnums.PARM_NULL.getCode(), bindingResult.getFieldError().getDefaultMessage());
+        }
+        return service.queryGenealogyListPage(queryGenealogyEntityDTO);
+    }
+
     @ResponseBody
     @RequestMapping("queryListByS")
     public ResultVO queryGenealogyListS(@RequestBody @Valid QueryGenealogyEntityDTO queryGenealogyEntityDTO,

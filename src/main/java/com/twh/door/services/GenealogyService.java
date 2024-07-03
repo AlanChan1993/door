@@ -7,6 +7,8 @@ import com.twh.door.entity.VO.ResultVO;
 public interface GenealogyService {
     ResultVO createGenealogy(GenealogyDTO genealogyDTO);
 
+    ResultVO queryGenealogyListPage(QueryGenealogyEntityDTO queryGenealogyEntityDTO);
+
     ResultVO selectGenealogyById(String id);
 
     ResultVO selectGenealogyByName(String name);

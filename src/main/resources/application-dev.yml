@@ -1,6 +1,9 @@
 #8080:测试  #8082:测试
 server:
   port: 8084
+  #访问时需要加上此参
+  servlet:
+    context-path: #/twh
 
 #springboot的配置
 spring:

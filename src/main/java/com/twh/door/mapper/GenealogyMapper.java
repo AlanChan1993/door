@@ -1,9 +1,12 @@
 package com.twh.door.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.twh.door.entity.DTO.QueryGenealogyEntityDTO;
 import com.twh.door.entity.POJO.Genealogy;
 import com.twh.door.entity.VO.ResultVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +32,7 @@ public interface GenealogyMapper {
     List<Genealogy> queryGenealogyListS(QueryGenealogyEntityDTO queryGenealogyEntityDTO);
 
     boolean delGenealogyById(Integer id);
+
+    Page<Genealogy> queryGenealogyListPage(IPage<?> page, @Param("dto") QueryGenealogyEntityDTO queryGenealogyEntityDTO);
+
 }

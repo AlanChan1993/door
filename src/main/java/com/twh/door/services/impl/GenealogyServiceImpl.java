@@ -1,5 +1,6 @@
 package com.twh.door.services.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.twh.door.converter.GenealogyConvertTOVO;
 import com.twh.door.converter.GenealogyToGenealogyDTO;
 import com.twh.door.entity.DTO.GenealogyDTO;
@@ -160,6 +161,19 @@ public class GenealogyServiceImpl implements GenealogyService {
         List<Genealogy> list = mapper.queryGenealogyListS(queryGenealogyEntityDTO);
         resultVO.setSuccess(true);
         resultVO.setDetail(list);
+        resultVO.setMsg(ResultEnums.SELECT_SUCCESS.getMsg());
+        return resultVO;
+    }
+
+
+    @Override
+    public ResultVO queryGenealogyListPage(QueryGenealogyEntityDTO queryGenealogyEntityDTO) {
+        ResultVO resultVO = new ResultVO();
+        Page<Genealogy> page = new Page<>();
+        page.setCurrent(queryGenealogyEntityDTO.getCurrent());
+        page.setSize(queryGenealogyEntityDTO.getSize());
+        resultVO.setSuccess(true);
+        resultVO.setDetail(mapper.queryGenealogyListPage(page, queryGenealogyEntityDTO));
         resultVO.setMsg(ResultEnums.SELECT_SUCCESS.getMsg());
         return resultVO;
     }

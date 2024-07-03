@@ -105,6 +105,36 @@
         </if>
     </select>
 
+    <select id="queryGenealogyListPage"  resultMap="BaseResultMap">
+        SELECT * FROM GENEALOGY WHERE CREATETIME>'2024-01-01 00:00:00'
+        <!--<if test="name!=null and name!=''">
+            AND  NAME=#{name,jdbcType=VARCHAR}
+        </if>
+        <if test="living!=null and living!=''">
+            AND  LIVING=#{living,jdbcType=VARCHAR}
+        </if>
+        <if test="bornDate!=null and bornDate!=''">
+            AND  BORNDATE=#{bornDate,jdbcType=VARCHAR}
+        </if>
+        <if test="deathDay!=null and deathDay!=''">
+            AND  DEATHDAY=#{deathDay,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId!=null and parentId!=''">
+            AND  PARENTID=#{parentId,jdbcType=VARCHAR}
+        </if>
+        <if test="sonId!=null and sonId!=''">
+            AND  SONID=#{sonId,jdbcType=VARCHAR}
+        </if>
+        <if test="partnerId!=null and partnerId!=''">
+            AND  PARTNERID=#{partnerId,jdbcType=VARCHAR}
+        </if>
+        <if test="vagueName!=null and vagueName!=''">
+            &lt;!&ndash;name就是传入的参数，bind相当于是一个参数，这个参数的值就是value拼接出来的值&ndash;&gt;
+            <bind name="vName" value="'%' + vagueName + '%'" />
+            AND  ( NAME LIKE #{vName} OR NICKNAME LIKE #{vName} )
+        </if>-->
+    </select>
+
 
 
 </mapper>
