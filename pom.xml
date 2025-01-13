@@ -43,6 +43,25 @@
             <version>2.2.0</version>
         </dependency>
 -->
+
+        <!--MyBatis-Plus 分页插件依赖
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+            <version>最新版本号</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot-starter</artifactId>
+            <version>最新版本号</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>最新版本号</version>
+        </dependency>-->
+
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
