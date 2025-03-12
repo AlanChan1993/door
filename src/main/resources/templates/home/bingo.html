@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<init-param>
+    <param-name>cors.supportedHeaders</param-name>
+    <param-value>Authorization,Accept, origin,x-Requested-with</param-value>
+</init-param>
+<body>
+<h1>Hellow,登录成功</h1>
+<a href="/home/index?uName=">goHome</a>
+<a href="/Check/logout">退出登录</a>
+
+<br>
+<button onclick="goHome()">index</button>
+<button onclick="toIndex()">跳动</button>
+<button onclick="getThisToken()">getToken</button>
+<div id="dataContainer"></div>
+
+<div id="myDiv">
+    <label id="currenttime" style="color: #AC2925; "></label>
+
+    <button type="button" onclick="getTokenByname()">1、利用XMLHttpRequest发送请求</button>
+    <p id="result" style="color:#b0a117fa"></p>
+    <button type="button" disabled="false" onclick="ToJSON()" id="convertjson">2、将请求结果转为json格式</button>
+    <pre id="jsonresult" class="pre"></pre>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var uName=getUrlParameter('uName');
+    var token;
+    var responsecontent;
+
+    function goHome() {
+        location.replace('/home/index?uName='+uName);
+    }
+
+
+    function getTokenByname() {
+        var url="/TokenController/getToken?uName="+uName;
+        //alert("url="+url);
+        $.get(url).done(function (res) {
+            //alert("res="+res);
+            token=res;
+        }).fail(function (e) {
+            console.log('error');
+        })
+
+    }
+
+  /*  function getThisToken() {
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        token = urlParams.get('token');
+        alert(token);
+        //console.log(token); // 使用token做进一步操作
+    }*/
+
+    function toIndex() {
+        alert("here");
+        //debugger;
+        var a =  new Headers();
+        alert(a.get("token"));
+
+        var token = getUrlParameter('token');
+        alert("token="+token);
+    }
+
+    function getUrlParameter(name) {
+        var results = new URLSearchParams(window.location.search).get(name);
+        return results;
+    }
+
+    window.onload = function() {
+        // 初始化内容
+        //alert("JS 初始化加载0");
+        getTokenByname();
+        $.ajax({
+            type: "GET",
+            url: "/home/bingo.html?uName=" + uName,
+            headers: {'Authorization': token}
+        });
+        //alert("JS 初始化加载00");
+    };
+</script>
+</html>

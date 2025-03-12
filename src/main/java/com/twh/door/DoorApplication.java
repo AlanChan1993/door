@@ -10,7 +10,8 @@ public class DoorApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DoorApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  若依启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
+        System.out.println("(♥◠‿◠)ﾉﾞ  若依启动成功   ლ(´ڡ`ლ)ﾞ)");
+        /*System.out.println("(♥◠‿◠)ﾉﾞ  若依启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
                 " | ( ' )  |       \\  _. /  '       \n" +
@@ -19,7 +20,7 @@ public class DoorApplication {
                 " |  |\\ \\  |  ||   |(_,_)'         \n" +
                 " |  | \\ `'   /|   `-'  /           \n" +
                 " |  |  \\    /  \\      /           \n" +
-                " ''-'   `'-'    `-..-'              ");
+                " ''-'   `'-'    `-..-'              ");*/
 
 
     }

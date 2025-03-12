@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 
 @Slf4j
-@Component
+//@Component
 public class TimerProgram {
     @Value("${timer.TimerProgram.timerStr}")
     private String timerStr;

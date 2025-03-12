@@ -1,8 +1,10 @@
 package com.twh.door.intercepter;
 
 import com.alibaba.fastjson.JSONObject;
+import com.twh.door.controller.TokenController;
 import com.twh.door.entity.POJO.DoorUser;
 import com.twh.door.services.DoorUserService;
+import com.twh.door.services.TokenService;
 import com.twh.door.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -23,25 +25,36 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-//@Component
+@Component
 public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
-    DoorUserService userService;
+    private DoorUserService userService;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private TokenService service;
 
-    //private StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (!(handler instanceof HandlerMethod)){
             return true;
         }
-        //获取token
-        String token=request.getHeader("token");
-        log.info("从头部获取的token==:{} ",token);
+        //从Header获取token
+       /* String token=request.getHeader("token");
+        log.info("从头部获取的token==:{} ",token);*/
+
+        //从url中获取username，再通过service获取token
+        String uName = request.getParameter("uName");
+        String token =null;
+        if (null != uName && !"".equals(uName)) {
+            token = service.getTokenByuName(uName);
+        }
+        log.info("从redis获取的uName==:{} ",uName);
+        log.info("从redis获取的token==:{} ",token);
         //redis----------------start----------------
-/*        try {
+        try {
             ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
             String redisToken = operations.get(token);
             if (redisToken == null) {
@@ -53,7 +66,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         } catch (Exception e) {
             response.setStatus(401);
             //return false;
-        }*/
+        }
         //redis----------------end----------------
 
         if (StringUtils.isNotEmpty(token)){

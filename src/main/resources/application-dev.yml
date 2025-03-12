@@ -1,6 +1,6 @@
 #8080:测试  #8082:测试
 server:
-  port: 8084
+  port: 8080
   #访问时需要加上此参
   servlet:
     context-path: #/twh
@@ -9,6 +9,12 @@ server:
 spring:
   application:
     name: twh  #appName
+
+#事务回滚控制
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
   datasource: #定义数据源
     #下面这两个配置，可以在每次连接的时候判断一些连接是否有效

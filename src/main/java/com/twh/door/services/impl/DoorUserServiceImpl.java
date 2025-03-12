@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class DoorUserServiceImpl implements DoorUserService {
      * @param user 参数封装
      * @return Result
      */
+    //@Transactional //(rollbackFor = RuntimeException.class) //指定回滚异常类型
+            // (rollbackFor = RuntimeException.class) //不回滚特定异常
     public ResultVO regist(DoorUserDTO user) {
         ResultVO result = new ResultVO();
         result.setSuccess(false);

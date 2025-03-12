@@ -12,7 +12,7 @@ import com.twh.door.entity.POJO.DoorUser;
 import java.util.Date;
 
 public class TokenUtils {
-    private static final String SECRET_KEY="agriculture";
+    private static final String SECRET_KEY="twh";
     private static final Long EXPIRE_TIME=(((3600)*24)*30)*1000L;
     //生成Token
     public static String generateToken(DoorUser userBean){

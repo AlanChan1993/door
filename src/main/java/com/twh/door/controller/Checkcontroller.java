@@ -3,6 +3,7 @@ package com.twh.door.controller;
 import com.twh.door.entity.FORM.DoorUserForm;
 import com.twh.door.entity.POJO.DoorUser;
 import com.twh.door.entity.VO.ResultVO;
+import com.twh.door.services.RedisTokenService;
 import com.twh.door.services.impl.DoorUserServiceImpl;
 import com.twh.door.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -30,30 +32,37 @@ public class Checkcontroller {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Autowired
+    private RedisTokenService redisService;
+
     //之前用的check，可能check为关键字
     @RequestMapping("/login")
     public String show(){
-        return "/door/check.html";
+        return "redirect:/door/check.html";
     }
 
     @PostMapping("/login2")
     //这里不能写Get(因为要与前端页面中的方法保持一致)，可以使用PostMapping或者RequestMapping（支持Get和Post）
     public String checkin(@Valid DoorUserForm userFrom, HttpServletRequest request,
-                          HttpServletResponse response){//@Pattern(regexp = "^\\S{5,16}$") String username
+                          HttpServletResponse response) throws IOException {//@Pattern(regexp = "^\\S{5,16}$") String username
         DoorUser user = userservice.getUser(userFrom.getUsername(), userFrom.getPassword());
         if(user!=null){
             //session.setAttribute("loginuser","username");
-            DoorUser userBean = userservice.getUser(userFrom.getUsername(), userFrom.getPassword());
-            String token = TokenUtils.generateToken(userBean);
+//            DoorUser userBean = userservice.getUser(userFrom.getUsername(), userFrom.getPassword());
+            String token = TokenUtils.generateToken(user);
             log.info("生成的token=:{}", token);
 
             // 将 token 存储到 redis 中
-            ValueOperations<String, String> vo = redisTemplate.opsForValue();
-            vo.set(token, userFrom.getUsername(), 5, TimeUnit.MINUTES);
+            /*ValueOperations<String, String> vo = redisTemplate.opsForValue();
+            vo.set(token, userFrom.getUsername(), 5, TimeUnit.MINUTES);*/
 
-            response.setHeader("token", token);
-            response.addHeader("Authorization", "Twh_ " + token);
-            return "redirect:/door/home/bingo.html";
+            // 将 token 存储到 redis 中2
+            redisService.saveTokenToRedis(user.getUserName(),token);
+
+//            HttpSession session = request.getSession();
+//            session.setAttribute("userToken", token);
+            return "redirect:/home/bingo.html?uName=" + user.getUserName();
+//            return "redirect:/home/bingo.html?uName="+user.getUserName()+"&token="+token;
         }else{
             return "redirect:/door/error.html";
             //账号或密码错误，登录失败，重定向到登录页面
